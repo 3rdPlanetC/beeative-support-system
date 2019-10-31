@@ -1,12 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './component/App'
+import './css/index.css'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {faLock, faUserTag, faUserTie, faCommentsDollar, faTv, faAddressBook, faUsers, faChartPie } from '@fortawesome/free-solid-svg-icons'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import firebase from './firebase'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
+import rootReducer from './store/reducers/rootReducer'
+import { reduxFirestore, getFirestore } from 'redux-firestore'
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
+
+
+const store = createStore(rootReducer, 
+    compose(
+        applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})),
+        reduxFirestore(firebase),
+        reactReduxFirebase(firebase)
+    )
+)
+
+library.add(faLock, faUserTag, faUserTie, faCommentsDollar, faTv, faAddressBook, faUsers, faChartPie)
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>, document.getElementById('root')    
+)

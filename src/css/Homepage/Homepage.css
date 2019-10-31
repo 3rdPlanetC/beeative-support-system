@@ -1,0 +1,180 @@
+#homepage {
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: #ffca09;
+  grid-gap: 1.75px;
+}
+
+#homepage #header {
+  -ms-grid-column: 5;
+  -ms-grid-column-span: 26;
+  grid-column: 5 / 31;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  grid-row: 1 / 3;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  background: black;
+  color: white;
+  -ms-grid-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+#homepage #header #header-title {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 31;
+  grid-column: 2 / 33;
+  -ms-grid-row: 2;
+  grid-row: 2;
+}
+
+#homepage #main {
+  -ms-grid-column: 5;
+  -ms-grid-column-span: 26;
+  grid-column: 5 / 31;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 16;
+  grid-row: 3 / 19;
+  padding: 2rem;
+  background: black;
+  overflow-y: auto;
+}
+
+#homepage #sidebar {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-column: 1 / 5;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 18;
+  grid-row: 1 / 19;
+  padding: 0rem 1rem;
+  background: black;
+  color: white;
+  -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 1.75px;
+}
+
+#homepage #sidebar #sidebar-heading {
+  border-bottom: 1px solid rgba(255, 202, 9, 0.9);
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  grid-row: 1 / 3;
+}
+
+#homepage #sidebar #sidebar-heading #sidebar-heading-1 img {
+  height: 50px;
+}
+
+#homepage #sidebar #sidebar-heading #sidebar-heading-2 {
+  width: calc(100% * 2/3);
+}
+
+#homepage #sidebar #sidebar-user {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 3;
+  grid-row: 3 / 6;
+  border-bottom: 1px solid rgba(255, 202, 9, 0.9);
+}
+
+#homepage #sidebar #sidebar-user #sidebar-user-1 {
+  width: calc(100% * 1/3);
+}
+
+#homepage #sidebar #sidebar-user #sidebar-user-1 img {
+  border-radius: 50%;
+}
+
+#homepage #sidebar #sidebar-user #sidebar-user-2 {
+  width: calc(100% * 2/3);
+  text-align: center;
+  padding: 0 0.5rem;
+  margin: auto;
+  font-size: 0.85rem;
+}
+
+#homepage #sidebar #sidebar-user #sidebar-user-2 .sidebar-user-2-card {
+  padding: 0.125rem 0 0.125rem 0;
+}
+
+#homepage #sidebar #sidebar-user #sidebar-user-2 .logout-button > button {
+  background-color: #ffca09;
+  color: black;
+  border-radius: 7.5px;
+  border: 0.5px solid black;
+  padding: 0.25rem;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+#homepage #sidebar #sidebar-user #sidebar-user-2 .logout-button > button:hover {
+  -webkit-box-shadow: 0 0 5px white;
+          box-shadow: 0 0 5px white;
+}
+
+#homepage #sidebar #sidebar-user #sidebar-user-2 .logout-button > button:active {
+  background-color: rgba(255, 202, 9, 0.7);
+}
+
+#homepage #sidebar #sidebar-menu {
+  -ms-grid-row: 6;
+  -ms-grid-row-span: 13;
+  grid-row: 6 / 19;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 202, 9, 0.9);
+}
+
+#homepage #sidebar #sidebar-menu .sidebar-menu-item {
+  padding: 1rem;
+  border-radius: 10px 10px 10px 10px;
+}
+
+#homepage #sidebar #sidebar-menu .sidebar-menu-item:hover {
+  background-color: #ffca09;
+  color: black;
+}
+
+#homepage #sidebar #sidebar-menu .sidebar-menu-item:hover div {
+  background-color: #ffca09;
+  color: black;
+}
+
+#homepage #sidebar #sidebar-menu .sidebar-menu-item .sidebar-menu-item-child {
+  padding: 0 0.5rem;
+}
+
+@media only screen and (max-width: 1600px) {
+  #homepage #header {
+    -ms-grid-column: 6;
+    -ms-grid-column-span: 25;
+    grid-column: 6 / 31;
+    padding: 2rem 0 0 2rem;
+  }
+  #homepage #sidebar {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 5;
+    grid-column: 1 / 6;
+  }
+  #homepage #sidebar #sidebar-user #sidebar-user-1 {
+    margin-top: auto;
+  }
+  #homepage #sidebar #sidebar-heading {
+    padding: 1.2rem 0;
+  }
+  #homepage #sidebar #sidebar-menu .sidebar-menu-item {
+    margin: 0 0.25rem 0.25rem 0.25rem;
+    padding: 0.75rem;
+  }
+  #homepage #sidebar #sidebar-menu .sidebar-menu-item .sidebar-menu-item-child {
+    font-size: 0.8rem;
+  }
+  #homepage #main {
+    -ms-grid-column: 6;
+    -ms-grid-column-span: 25;
+    grid-column: 6 / 31;
+  }
+}
+/*# sourceMappingURL=Homepage.css.map */
