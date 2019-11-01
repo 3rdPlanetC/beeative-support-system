@@ -1,219 +1,41 @@
 @font-face {
   font-family: kanit;
-  src: url("../fonts/Kanit-Regular.ttf");
+  src: url('../fonts/Kanit-Regular.ttf');
 }
-
-.grid {
-  display: -ms-grid;
-  display: grid;
-}
-
-.block {
-  display: block;
-}
-
-.flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.alignCenter {
-  text-align: center;
-}
-
-.alignRight {
-  text-align: right;
-}
-
-.marginAuto {
-  margin: auto;
-}
-
-.brownMain {
-  color: #44392d;
-}
-
-.bgBrownMain {
-  background-color: #44392d;
-}
-
-.white {
-  color: white;
-}
-
-.black {
-  color: black;
-}
-
-.bgWhite {
-  background-color: white;
-}
-
-.bgBlack {
-  background-color: black;
-}
-
-.width100 {
-  width: 100%;
-}
-
-.width75 {
-  width: 75%;
-}
-
-.width50 {
-  width: 50%;
-}
-
-.width25 {
-  width: 25%;
-}
-
-.width10 {
-  width: 10%;
-}
-
-.width15 {
-  width: 15%;
-}
-
-.height25 {
-  height: 25%;
-}
-
-.height50 {
-  height: 50%;
-}
-
-.height75 {
-  height: 75%;
-}
-
-.height100 {
-  height: 100%;
-}
-
-.posAbsolute {
-  position: absolute;
-}
-
-.posFixed {
-  position: fixed;
-}
-
-.marginLeft25 {
-  margin: auto auto auto 25%;
-}
-
-.marginRight25 {
-  margin: auto 25% auto auto;
-}
-
-.cursorPointer {
-  cursor: pointer;
-}
-
-.borderNone {
-  border-style: none;
-}
-
-.page {
-  min-width: 1366px;
-  width: auto;
-  min-height: 940px;
-  height: 100%;
-}
-
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-family: kanit;
 }
-
 a {
   text-decoration: none;
   color: white;
 }
-
 th span {
   text-align: center;
 }
-
 input {
   border-style: none;
 }
-
-/* Google Button Css */
-.google-button__icon {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 8px 0 8px 8px;
-  width: 18px;
-  height: 18px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-.google-button {
-  height: 40px;
-  border-width: 0;
-  background: white;
-  color: #737373;
-  border-radius: 5px;
-  white-space: nowrap;
-  -webkit-box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
-          box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
-  -webkit-transition-property: background-color, -webkit-box-shadow;
-  transition-property: background-color, -webkit-box-shadow;
-  transition-property: background-color, box-shadow;
-  transition-property: background-color, box-shadow, -webkit-box-shadow;
-  -webkit-transition-duration: 150ms;
-          transition-duration: 150ms;
-  -webkit-transition-timing-function: ease-in-out;
-          transition-timing-function: ease-in-out;
-  padding: 0;
-}
-
-.google-button__text {
-  display: inline-block;
-  vertical-align: middle;
-  padding: 0 24px;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: 'Roboto',arial,sans-serif;
-}
-
 /* Class Active */
 .sidebar-menu-item-active div {
   background-color: #3c3c3c;
 }
-
-.MuiTableCell-root {
-  padding: 1rem !important;
-}
-
-/* Material Table CSS Fixed */
 tr.MuiTableRow-root th {
   background-color: rgba(255, 202, 9, 0.9);
 }
-
 *::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #555;
 }
-
 *::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   background-color: #F5F5F5;
 }
-
 *::-webkit-scrollbar {
   width: 12px;
   background-color: #F5F5F5;
 }
-/*# sourceMappingURL=index.css.map */

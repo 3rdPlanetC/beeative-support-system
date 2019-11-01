@@ -1,12 +1,11 @@
 import React, {useEffect, Fragment, lazy, Suspense} from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { CurrentUser } from '../store/actions/UserAction'
-import LoadingLayout from '../layout/LoadingLayout'
-import '../css/app.css'
-import {Login} from './Login'
+import { CurrentUser } from '../store/actions/authAction'
+import { LoadingLayout } from '../layout'
+import { LoginPage } from './LoginPage'
 
-const Homepage = lazy(() => import('./Homepage/Homepage'))
+const HomePage = lazy(() => import('./HomePage/HomePage'))
 
 const App = (props) => {
   /* useEffect Setting */
@@ -23,7 +22,7 @@ const App = (props) => {
       <BrowserRouter>
         <div id="app">
           <Suspense fallback={<LoadingLayout />}>
-            <Homepage />
+            <HomePage />
           </Suspense>
         </div>
       </BrowserRouter>
@@ -35,8 +34,7 @@ const App = (props) => {
     <BrowserRouter>
       <div id="app">
         <Fragment>
-          <Route exact path="/" component={Login}/>
-          <Route component={Login}/>
+          <Route component={LoginPage}/>
         </Fragment>
       </div>
     </BrowserRouter>

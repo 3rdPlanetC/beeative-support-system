@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,YAAY,CAAC;EACT,gBAAgB,EAAE,kDAAkD;EACpE,kBAAkB,EAAE,eAAe;EACnC,qBAAqB,EAAE,WAAW;CAcrC;;AAjBD,AAII,YAJQ,CAIR,iBAAiB,CAAC;EACd,cAAc,EAAE,CAAC;EACjB,iBAAiB,EAAE,CAAC;CACvB;;AAPL,AASI,YATQ,CASR,gBAAgB,CAAC;EACb,OAAO,EAAE,MAAM;EACf,qBAAqB,EAAE,OAAO;CAKjC;;AAhBL,AAYQ,YAZI,CASR,gBAAgB,CAGZ,mBAAmB,CAAC;EAChB,OAAO,EAAE,OAAO;EAChB,aAAa,EAAE,IAAI;CACtB",
-    "sources": [
-        "signup.scss"
-    ],
-    "names": [],
-    "file": "signup.css"
-}

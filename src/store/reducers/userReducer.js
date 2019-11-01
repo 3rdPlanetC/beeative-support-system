@@ -1,5 +1,4 @@
 const userReducer = (state = null, {type, value}) => {
-
     switch(type) {
         case 'USER_PROFILE':
             

@@ -3,7 +3,7 @@ import BeeativeLogo from '../../images/beeative-logo.png'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { HeaderTitle } from './../../store/actions/SidebarAction'
+import { HeaderTitle } from '../../store/actions/titleAction'
 import '../../css/Homepage/Homepage.css'
 
 import Header from './Header'
@@ -25,7 +25,7 @@ const Homepage = (props) => {
 
   /* Render */
     return (
-      <section id="homepage" className="grid page height100 posAbsolute">
+      <section id="homepage">
           <Header />
           <Sidebar  {...user} Logo={BeeativeLogo} companyName="Beeative"/>
           <Main {...props}/>

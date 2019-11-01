@@ -1,6 +1,33 @@
 import React from 'react'
 import {SidebarLayout, MenuLayout} from '../../layout'
-import { menu } from '../../config/config'
+
+const menu = [
+    {
+        route: "customers_data",
+        icon: "chart-pie",
+        name: "Customers Data"
+    },
+    {
+        route: "admin_account",
+        icon: "address-book",
+        name: "Admin Accounts"
+    },
+    {
+        route: "customer_dealing",
+        icon: "comments-dollar",
+        name: "Customer Dealing"
+    },
+    {
+        route: "web_monitoring",
+        icon: "tv",
+        name: "Web Monitoring"
+    },
+    {
+        route: "partner_contact",
+        icon: "user-tie",
+        name: "Partner Contact"
+    }
+]
 
 const Sidebar = (props) => {
     return (

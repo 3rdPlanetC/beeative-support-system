@@ -8,39 +8,43 @@ import { config } from '../../../config/config'
 import { tableOption } from './AdminAccount/MaterialTableOption'
 import { tableState } from './AdminAccount/MaterialTableColumn'
 import { Avatar } from './AdminAccount/AvatarEachRow'
-import { HeaderTitle } from './../../../store/actions/SidebarAction'
+import { HeaderTitle } from '../../../store/actions/titleAction'
+import { createProject } from './../../../store/actions/ProjectAction';
 
 const AdminAccount = (props) => {
   /* States Setting */
   const [selectRow, setSelectRow] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [state, setState] = useState({...tableState, columns: [...tableState.columns, 
-    {
-      title: 'avatar_created',
-      field: 'avatar_created',
-      render: rowData => <Avatar rowData={rowData} photoURL={props.photoURL} type="avatar_created"/>,
-      editable: 'never',
-      filtering: false,
-      export: false
-    },
-    {
-      title: 'avatar_modified',
-      field: 'avatar_modified',
-      render: rowData => <Avatar rowData={rowData} photoURL={props.photoURL} type="avatar_modified"/>,
-      editable: 'never',
-      filtering: false,
-      export: false
-    },
-  ]})
+  const [state, setState] = useState({
+    ...tableState, 
+    columns: [
+      ...tableState.columns, 
+      {
+        title: 'avatar_created',
+        field: 'avatar_created',
+        render: rowData => <Avatar rowData={rowData} photoURL={props.photoURL} type="avatar_created"/>,
+        editable: 'never',
+        filtering: false,
+        export: false
+      },
+      {
+        title: 'avatar_modified',
+        field: 'avatar_modified',
+        render: rowData => <Avatar rowData={rowData} photoURL={props.photoURL} type="avatar_modified"/>,
+        editable: 'never',
+        filtering: false,
+        export: false
+      },
+    ]
+  })
 
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
     if (props.match.url === "/admin_account") {
       readData(signal)
-      props.HeaderTitle("Admin Account")
+      props.HeaderTitle("Admin Accounts")
     }
-
     return () => {
       abortController.abort()
     }
@@ -159,9 +163,21 @@ const AdminAccount = (props) => {
       }, 1000)
     })
   }
-  console.log(props)
+
+  const createCustomerProject = () => {
+    return new Promise(resolve => {
+      setTimeout(async () => {
+        resolve()
+        props.createProject({
+          project_id: "99",
+          project_name: "exxon"
+        })
+      }, 500)
+    })
+
+  }
+
   return (
-    <div>
       <MaterialTable
         {...tableOption(
           isLoading,
@@ -173,15 +189,16 @@ const AdminAccount = (props) => {
           updateData,
           deleteData,
           readData,
+          createCustomerProject
         )}
       />
-    </div>
   )
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     HeaderTitle: (title) => dispatch(HeaderTitle(title)),
+    createProject: (project) => dispatch(createProject(project))
   }
 }
 

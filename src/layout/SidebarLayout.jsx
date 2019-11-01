@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { LogoutUser } from '../store/actions/UserAction'
-import { HeaderTitle } from '../store/actions/SidebarAction'
+import { LogoutUser } from '../store/actions/authAction'
+import { HeaderTitle } from '../store/actions/titleAction'
 import { Link } from 'react-router-dom'
 
 const MainLayout = (props) => {
@@ -14,31 +14,31 @@ const MainLayout = (props) => {
     }
     /* Render */
     return (
-        <div id="sidebar" className="grid">
-            <div className="flex" id="sidebar-heading">
-                <div className="marginAuto alignCenter width50" id="sidebar-heading-1">
+        <div id="sidebar">
+            <div id="sidebar-heading">
+                <div id="sidebar-heading-logo">
                     <Link to="/" onClick={() => props.HeaderTitle("Home")}>
                         <img className="" src={props.companyLogo || null} alt="Company Logo"/>
                     </Link>
                 </div>
-                <div className="marginAuto width50" id="sidebar-heading-2">
-                    <h2 className="alignCenter">{props.companyName}</h2>
+                <div id="sidebar-heading-name">
+                    <h2>{props.companyName}</h2>
                 </div>
             </div>
-            <div className="flex" id="sidebar-user">
-                <div className="width50 marginAuto alignCenter" id="sidebar-user-1">
-                    <img className="width100" src={props.userLogo || null} alt="User Avatar" style={{width: "75px", height: "75px"}}/>
+            <div id="sidebar-user">
+                <div id="sidebar-user-logo">
+                    <img src={props.userLogo || null} alt="User Avatar"/>
                 </div>
-                <div className="" id="sidebar-user-2">
-                    <div className="sidebar-user-2-card">
-                        <p className="alignCenter width100">{props.displayName}</p>
+                <div className="" id="sidebar-user-detail">
+                    <div className="sidebar-user-detail-card">
+                        <p>{props.displayName}</p>
                     </div>
-                    <div className="sidebar-user-2-card logout-button cursorPointer" onClick={() => stateOnLogout()}>
-                        <button className="width75 borderNone cursorPointer">Logout</button>
+                    <div className="sidebar-user-detail-card logout" onClick={() => stateOnLogout()}>
+                        <button className="logout-button">Logout</button>
                     </div>
                 </div>
             </div>
-            <div id="sidebar-menu" className="">
+            <div id="sidebar-menu">
                 {props.children}
             </div>
         </div>

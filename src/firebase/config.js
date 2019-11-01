@@ -1,11 +1,11 @@
 const config = {
-    apiKey: "AIzaSyCKeKD_rnCsmIW9pKEIJzTld8l63p1LKpQ",
-    authDomain: "beeative-chat.firebaseapp.com",
-    databaseURL: "https://beeative-chat.firebaseio.com",
-    projectId: "beeative-chat",
-    storageBucket: "beeative-chat.appspot.com",
-    messagingSenderId: "141683335426",
-    appId: "1:141683335426:web:ee9d670797bdb7c3"
+    apiKey: "AIzaSyBC7DmCj4IjdFN3_vU2tIKlr6xvnfBmrVY",
+    authDomain: "beeative-ss.firebaseapp.com",
+    databaseURL: "https://beeative-ss.firebaseio.com",
+    projectId: "beeative-ss",
+    storageBucket: "beeative-ss.appspot.com",
+    messagingSenderId: "773267591077",
+    appId: "1:773267591077:web:57fb2d1c16ba6e1752a24c"
 }
 
 export default config
