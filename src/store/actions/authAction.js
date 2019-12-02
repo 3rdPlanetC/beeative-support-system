@@ -1,44 +1,47 @@
-import firebase from '../../firebase'
+import cryptojs from 'crypto-js'
+import Cookies from 'universal-cookie'
+const cookies = new Cookies()
+
+export const GoogleLogin = () => {
+    return (dispatch, state, { getFirebase }) => {
+        const firebase = getFirebase()
+        firebase.login({
+            provider: 'google',
+            type: 'popup'
+        }).then((res) => {
+            if (res.additionalUserInfo.profile.hd === "beeative.com") {
+                const dateNow = new Date().getTime()
+                const value = cryptojs.AES.encrypt(`${dateNow}`, "beeative_never_die!").toString()
+                cookies.set(
+                    'FAUTH',
+                    value,
+                    { 
+                        path: '/',
+                        maxAge: 24*60*60
+                    }
+                )
+                window.location.reload()
+            } else {
+                firebase.logout().then(() => {
+                    cookies.remove(`FAUTH`)
+                    window.location.reload()
+                })
+                 alert("Error Message : Please Signin by youremail@beeative.com")
+            }
+            // console.log(res)
+            // console.log(res.credential)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+}
 
 export const LogoutUser = () => {
-    return (dispatch, state) => {
-        firebase.auth().signOut()
-            .then(() => {
-                dispatch({ type: 'LOGOUT', value: false})
-            })
-            .catch(err => {
-                console.log("ERROR LOGOUT : "+err)
-            })
-    }
-}
-export const CurrentUser = () => {
-    return (dispatch, state) => {
-        firebase.auth().onAuthStateChanged( async res => {
-            if (res === null) {
-                dispatch({type: 'CURRENT_LOGIN', value: null})
-            } else {
-                dispatch({type: 'CURRENT_LOGIN', value: true})
-                dispatch({type: 'USER_PROFILE', value: {...res}})
-            }
-        })
-    }
-}
-export const GoogleLogin = () => {
-    return (dispatch, state) => {
-        const provider = new firebase.auth.GoogleAuthProvider()
-        provider.setCustomParameters({
-            prompt: 'select_account'
-        })
-        firebase.auth().signInWithRedirect(provider).then(async res => {
-            if (res.additionalUserInfo.profile.hd === "beeative.com") {
-                console.log(res.credential)
-            } else {
-                firebase.auth().signOut()
-                alert("Error Message : Please Signin by youremail@beeative.com")
-            }
-        }).catch(err => {
-            firebase.auth().signOut()
-            alert(`${err}`)
+    return (dispatch, state, { getFirebase }) => {
+        const firebase = getFirebase()
+        firebase.logout().then(() => {
+            cookies.remove(`FAUTH`)
+            window.location.reload()
         })
     }
 }

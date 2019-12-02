@@ -5,9 +5,13 @@ import { connect } from 'react-redux'
 const Header = (props) => {
     return (
         <HeaderLayout>
-            <div id="header-title" style={{display: "flex"}}>
-                <h1 style={{width: "20%"}}>{props.title}</h1>
-                <h2 style={{textAlign: "right", width: "100%", paddingRight: "1rem"}}>Beeative Support System V.1</h2>
+            <div id="header-title" style={{display: "flex", height: "100%"}}>
+                <div style={{width: "50%",margin: "auto"}}>
+                    <h2 style={{padding: "0 2rem"}}>{props.title}</h2>
+                </div>
+                <div style={{width: "50%",margin: "auto"}}>
+                    <h2 style={{float: "right", padding: "0 2rem"}}>Beeative Support System Version 1.2.3</h2>
+                </div>
             </div>
         </HeaderLayout>
     )

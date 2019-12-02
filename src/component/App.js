@@ -1,56 +1,51 @@
-import React, {useEffect, Fragment, lazy, Suspense} from 'react'
+import React, {lazy, Suspense, useEffect} from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { CurrentUser } from '../store/actions/authAction'
 import { LoadingLayout } from '../layout'
-import { LoginPage } from './LoginPage'
+import { compose } from 'redux'
+import Cookies from 'universal-cookie'
+import cryptojs from 'crypto-js'
 
-const HomePage = lazy(() => import('./HomePage/HomePage'))
+const cookies = new Cookies();
+const LoginPage = lazy(() => import('./LoginPage/LoginPage'))
+const HomePage = lazy(() => import('./HomePage/Homepage'))
+let cookieChecker
 
 const App = (props) => {
-  /* useEffect Setting */
-  useEffect(() => {
-    const abortController = new AbortController()
-    props.CurrentUser()
-    return () => {
-      abortController.abort()
-    }
-  }, [])
-  /* Render */
-  if (props.auth.currentLogin) {
-    return (
-      <BrowserRouter>
-        <div id="app">
-          <Suspense fallback={<LoadingLayout />}>
-            <HomePage />
-          </Suspense>
-        </div>
-      </BrowserRouter>
-    )
-  } else if (!props.auth.currentLogin && props.auth.currentLogin !== null) {
-    return <LoadingLayout />
+  const isAuth = props.firebase
+  if (cookies.get('FAUTH') != undefined) {
+    cookieChecker = cryptojs.AES.decrypt(cookies.get('FAUTH'), "beeative_never_die!").toString(cryptojs.enc.Utf8)
   }
+  /* Render */
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      forceRefresh={true}
+    >
       <div id="app">
-        <Fragment>
-          <Route component={LoginPage}/>
-        </Fragment>
+          <Route path="/" render={props => (
+            <Suspense fallback={<LoadingLayout />}>
+              {cookieChecker%1 === 0 ? (
+                isAuth.auth.isLoaded == true ? (
+                  <HomePage {...props}/>
+                ) : (
+                  <LoadingLayout />
+                )
+              ) : (
+                <LoginPage {...props}/>
+              )}
+            </Suspense>
+          )}/>
       </div>
     </BrowserRouter>
   )
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = ({firebase}) => {
   return {
-    CurrentUser: () => dispatch(CurrentUser()),
+    firebase
   }
 }
 
-const mapStateToProps = ({auth}) => {
-  return {
-    auth
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default compose(
+    connect(mapStateToProps, null),
+  )(App)

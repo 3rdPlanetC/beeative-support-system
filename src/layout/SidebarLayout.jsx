@@ -1,23 +1,13 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { LogoutUser } from '../store/actions/authAction'
-import { HeaderTitle } from '../store/actions/titleAction'
 import { Link } from 'react-router-dom'
 
 const MainLayout = (props) => {
-    /* Functions Setting */
-    const stateOnLogout = () => {
-        const check = window.confirm('Are you sure want to logout?')
-        if (check) {
-            props.LogoutUser()
-        }
-    }
     /* Render */
     return (
         <div id="sidebar">
             <div id="sidebar-heading">
                 <div id="sidebar-heading-logo">
-                    <Link to="/" onClick={() => props.HeaderTitle("Home")}>
+                    <Link to="/" onClick={() => props.homeTitle()}>
                         <img className="" src={props.companyLogo || null} alt="Company Logo"/>
                     </Link>
                 </div>
@@ -33,7 +23,7 @@ const MainLayout = (props) => {
                     <div className="sidebar-user-detail-card">
                         <p>{props.displayName}</p>
                     </div>
-                    <div className="sidebar-user-detail-card logout" onClick={() => stateOnLogout()}>
+                    <div className="sidebar-user-detail-card logout" onClick={() => props.logout()}>
                         <button className="logout-button">Logout</button>
                     </div>
                 </div>
@@ -45,11 +35,4 @@ const MainLayout = (props) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-      LogoutUser: () => dispatch(LogoutUser()),
-      HeaderTitle: (title) => dispatch(HeaderTitle(title))
-    }
-}
-
-export default connect(null, mapDispatchToProps)(MainLayout)
+export default MainLayout

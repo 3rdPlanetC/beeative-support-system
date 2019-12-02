@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from '../../images/google.svg'
+import Logo from '../../../images/google.svg'
 
 const ButtonLogin = (props) => {
     return (

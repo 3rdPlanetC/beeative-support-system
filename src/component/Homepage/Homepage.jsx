@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, Fragment} from 'react'
 import BeeativeLogo from '../../images/beeative-logo.png'
 import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { HeaderTitle } from '../../store/actions/titleAction'
 import '../../css/Homepage/Homepage.css'
@@ -12,24 +11,27 @@ import Main from './Main'
   
 const Homepage = (props) => {
   /* States Setting */
+  const isAuth = props.firebase
   const [user, setUser] = useState({
     displayName: "",
     email: "",
     photoURL: "",
   })
-
   /* UseEffect Setting */
   useEffect(() => {
-    setUser(props.user)
-  }, [props.user])
-
+    setUser(props.firebase.auth)
+  }, [])
   /* Render */
     return (
-      <section id="homepage">
-          <Header />
-          <Sidebar  {...user} Logo={BeeativeLogo} companyName="Beeative"/>
-          <Main {...props}/>
-      </section>
+      <Fragment>
+        {!isAuth.auth.isEmpty != true ? 'Loading' : (
+          <section id="homepage">
+            <Header />
+            <Sidebar {...props.firebase.auth} Logo={BeeativeLogo} companyName="Beeative"/>
+            <Main {...props.firebase.auth}/>
+          </section>
+        )}
+      </Fragment>
     )
 }
 
@@ -39,16 +41,12 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const mapStateToProps = ({firestore, user}) => {
+const mapStateToProps = ({firebase}) => {
   return {
-    firestore,
-    user
+    firebase,
   }
 }
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([
-    {collection: 'users_role'}
-  ])
 )(Homepage)
