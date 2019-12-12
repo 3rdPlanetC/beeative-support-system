@@ -1,15 +1,11 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import MaterialTable from 'material-table'
-import { firestoreConnect } from 'react-redux-firebase'
-import { connect } from 'react-redux'
-import { compose } from 'redux'
 import Avatar from './Avatar'
 
 const DataTable = (props) => {
-    const tableRef = useRef()
+    console.log(props)
     return (
         <MaterialTable
-            tableRef={tableRef}
             title='Admin Accounts'
             isLoading={props.isLoaded}
             localization={{
@@ -37,24 +33,7 @@ const DataTable = (props) => {
                     field: 'customer_id',
                     type: 'numeric',
                     defaultSort: 'asc',
-                    lookup: {
-                        1: "Seatfinder Pro",
-                        2: "Four4house",
-                        3: "Somjai",
-                        4: "Phutawan",
-                        5: "Seatfinder",
-                        6: "Everyday Import",
-                        7: "UDirons",
-                        8: "Draftboard",
-                        9: "Beeative",
-                        10: "Maison",
-                        11: "Pattaya Event",
-                        12: "Pattaya Calendar",
-                        13: "Seatfinder Pro",
-                        14: "Seatfinder UK",
-                        15: "Beeative Support",
-                        16: "Magento2.co"
-                    }
+                    lookup: props.admin_account.customerId
                 },
                 { 
                     title: 'username', 
@@ -68,17 +47,7 @@ const DataTable = (props) => {
                 {
                     title: 'system_type',
                     field: 'system_type',
-                    lookup: { 
-                        1: 'FTP/SFTP',
-                        2: 'DATABASE',
-                        3: 'MAGENTO',
-                        4: 'WORDPRESS',
-                        5: 'SSH',
-                        6: 'DOMAIN',
-                        7: 'G-SUIT',
-                        8: 'SMTP',
-                        9: 'EMAIL-CUSTOMER'
-                    },
+                    lookup: props.admin_account.systemType,
                 },
                 {
                     title: 'date_created',
@@ -155,15 +124,4 @@ const DataTable = (props) => {
     )
 }
 
-const mapStateToProps = ({firestore}) => {
-    return {
-      customer_project: firestore.ordered.customer_project,
-    }
-}
-
-export default compose(
-    connect(mapStateToProps),
-    firestoreConnect([
-    'customer_project',
-  ])
-)(DataTable)
+export default DataTable

@@ -9,7 +9,6 @@ import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 
 const AdminAccount = (props) => {
-  console.log(props.customer_project)
   /* States Setting */
   const [selectRow, setSelectRow] = useState(null)
   useEffect(() => {
@@ -66,15 +65,19 @@ const AdminAccount = (props) => {
     })
   }
 
+  if (!isLoaded(props.admin_account) && !isLoaded(props.customer_project)) {
+    return (
+      <SkeletonTheme color="#c9c9c9" highlightColor="#e8e8e8">
+        <div style={{ fontSize: 20, lineHeight: 2 }}>
+          <Skeleton height={'100%'} />
+        </div>
+      </SkeletonTheme>
+    )
+  }
+
   return (
     <Fragment>
-      {!isLoaded(props.customer_project) ? (
-        <SkeletonTheme color="#c9c9c9" highlightColor="#e8e8e8">
-          <div style={{ fontSize: 20, lineHeight: 2 }}>
-            <Skeleton height={'100%'} />
-          </div>
-        </SkeletonTheme>
-      ) : isEmpty(props.customer_project) ? 'Data is empty': 
+      {isEmpty(props.admin_account) && isEmpty(props.customer_project) ? 'Data is empty': 
         <DataTable 
           isLoaded={!isLoaded}
           selectRow={selectRow}
@@ -85,6 +88,8 @@ const AdminAccount = (props) => {
           deleteData={deleteData}
           createCustomerProject={createCustomerProject}
           userData={props.userData}
+          admin_account={props.admin_account}
+          customer_project={props.customer_project}
         />
       }
     </Fragment>
@@ -100,6 +105,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = ({firestore}) => {
   return {
+    admin_account: firestore.data.admin_account,
     customer_project: firestore.ordered.customer_project,
   }
 }
@@ -107,6 +113,7 @@ const mapStateToProps = ({firestore}) => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
-    'customer_project',
+    'admin_account',
+    'customer_project'
   ]),
 )(AdminAccount)

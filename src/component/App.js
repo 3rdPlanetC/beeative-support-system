@@ -48,4 +48,4 @@ const mapStateToProps = ({firebase}) => {
 
 export default compose(
     connect(mapStateToProps, null),
-  )(App)
+)(App)

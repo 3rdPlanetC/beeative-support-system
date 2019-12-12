@@ -1,5 +1,4 @@
 import React, {useState, useEffect, Fragment} from 'react'
-import BeeativeLogo from '../../images/beeative-logo.png'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { HeaderTitle } from '../../store/actions/titleAction'
@@ -25,9 +24,9 @@ const Homepage = (props) => {
     return (
       <Fragment>
         {!isAuth.auth.isEmpty != true ? 'Loading' : (
-          <section id="homepage">
+          <section id="home-page">
             <Header />
-            <Sidebar {...props.firebase.auth} Logo={BeeativeLogo} companyName="Beeative"/>
+            <Sidebar {...props.firebase.auth} />
             <Main {...props.firebase.auth}/>
           </section>
         )}

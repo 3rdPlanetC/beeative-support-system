@@ -37,7 +37,7 @@
   background-color: black;
   color: #FFC300;
 }
-#homepage {
+#home-page {
   grid-template-columns: 1fr 11fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   display: grid;
@@ -45,7 +45,7 @@
   width: 100%;
   height: 100%;
 }
-#homepage #header {
+#home-page #header {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
   background: #000;
@@ -56,10 +56,10 @@
   min-height: calc(750px * 2 / 12);
   border-bottom: 1.75px solid rgba(255, 202, 9, 0.9);
 }
-#homepage #header #header-title {
+#home-page #header #header-title {
   display: flex;
 }
-#homepage #main {
+#home-page #main {
   grid-column: 2 / 5;
   grid-row: 2 / 13;
   padding: 2rem;
@@ -69,10 +69,10 @@
   height: 100%;
   min-height: calc(750px * 10 / 12);
 }
-#homepage #main div:not(.MuiPaper-root) {
+#home-page #main div:not(.MuiPaper-root) {
   height: 100%;
 }
-#homepage #sidebar {
+#home-page #sidebar {
   grid-column: 1 / 2;
   grid-row: 1 / 13;
   padding: 0 1rem;
@@ -85,60 +85,60 @@
   min-height: 750px;
   border-right: 1.75px solid rgba(255, 202, 9, 0.9);
 }
-#homepage #sidebar #sidebar-heading {
+#home-page #sidebar #sidebar-heading {
   border-bottom: 1.75px solid rgba(255, 202, 9, 0.9);
   display: flex;
   min-height: calc(750px * 2 / 12);
 }
-#homepage #sidebar #sidebar-heading #sidebar-heading-logo {
+#home-page #sidebar #sidebar-heading #sidebar-heading-logo {
   margin: auto;
   text-align: center;
   width: 50%;
 }
-#homepage #sidebar #sidebar-heading #sidebar-heading-logo img {
+#home-page #sidebar #sidebar-heading #sidebar-heading-logo img {
   height: 50px;
 }
-#homepage #sidebar #sidebar-heading #sidebar-heading-name {
+#home-page #sidebar #sidebar-heading #sidebar-heading-name {
   margin: auto;
   width: 50%;
   width: calc(100% * 2/3);
 }
-#homepage #sidebar #sidebar-heading #sidebar-heading-name h2 {
+#home-page #sidebar #sidebar-heading #sidebar-heading-name h2 {
   text-align: center;
 }
-#homepage #sidebar #sidebar-user {
+#home-page #sidebar #sidebar-user {
   border-bottom: 1.75px solid rgba(255, 202, 9, 0.9);
   display: flex;
   min-height: calc(750px * 2 / 12);
 }
-#homepage #sidebar #sidebar-user #sidebar-user-logo {
+#home-page #sidebar #sidebar-user #sidebar-user-logo {
   width: calc(100% * 1/3);
   margin: auto;
   text-align: center;
 }
-#homepage #sidebar #sidebar-user #sidebar-user-logo img {
+#home-page #sidebar #sidebar-user #sidebar-user-logo img {
   border-radius: 50%;
   width: 75px;
   height: 75px;
 }
-#homepage #sidebar #sidebar-user #sidebar-user-detail {
+#home-page #sidebar #sidebar-user #sidebar-user-detail {
   width: calc(100% * 2/3);
   text-align: center;
   padding: 0 0 0 1rem;
   margin: auto;
   font-size: 0.85rem;
 }
-#homepage #sidebar #sidebar-user #sidebar-user-detail .sidebar-user-detail-card {
+#home-page #sidebar #sidebar-user #sidebar-user-detail .sidebar-user-detail-card {
   padding: 0.125rem 0 0.125rem 0;
 }
-#homepage #sidebar #sidebar-user #sidebar-user-detail .sidebar-user-detail-card p {
+#home-page #sidebar #sidebar-user #sidebar-user-detail .sidebar-user-detail-card p {
   text-align: center;
   width: 100%;
 }
-#homepage #sidebar #sidebar-user #sidebar-user-detail .sidebar-user-detail-card.logout {
+#home-page #sidebar #sidebar-user #sidebar-user-detail .sidebar-user-detail-card.logout {
   cursor: pointer;
 }
-#homepage #sidebar #sidebar-user #sidebar-user-detail .sidebar-user-detail-card.logout button {
+#home-page #sidebar #sidebar-user #sidebar-user-detail .sidebar-user-detail-card.logout button {
   background-color: #ffca09;
   color: black;
   border-radius: 7.5px;
@@ -149,28 +149,28 @@
   border: none;
   cursor: pointer;
 }
-#homepage #sidebar #sidebar-user #sidebar-user-detail .sidebar-user-detail-card.logout button:hover {
+#home-page #sidebar #sidebar-user #sidebar-user-detail .sidebar-user-detail-card.logout button:hover {
   box-shadow: 0 0 5px white;
 }
-#homepage #sidebar #sidebar-user #sidebar-user-detail .sidebar-user-detail-card.logout button:active {
+#home-page #sidebar #sidebar-user #sidebar-user-detail .sidebar-user-detail-card.logout button:active {
   background-color: rgba(255, 202, 9, 0.7);
 }
-#homepage #sidebar #sidebar-menu {
+#home-page #sidebar #sidebar-menu {
   margin-top: 1rem;
 }
-#homepage #sidebar #sidebar-menu .sidebar-menu-item {
+#home-page #sidebar #sidebar-menu .sidebar-menu-item {
   padding: 1rem;
   border-radius: 10px 10px 10px 10px;
   display: flex;
 }
-#homepage #sidebar #sidebar-menu .sidebar-menu-item:hover {
+#home-page #sidebar #sidebar-menu .sidebar-menu-item:hover {
   background-color: #ffca09;
   color: black;
 }
-#homepage #sidebar #sidebar-menu .sidebar-menu-item:hover div {
+#home-page #sidebar #sidebar-menu .sidebar-menu-item:hover div {
   background-color: #ffca09;
   color: black;
 }
-#homepage #sidebar #sidebar-menu .sidebar-menu-item .sidebar-menu-item-child {
+#home-page #sidebar #sidebar-menu .sidebar-menu-item .sidebar-menu-item-child {
   padding: 0 0.5rem;
 }

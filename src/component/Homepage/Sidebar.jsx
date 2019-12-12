@@ -5,9 +5,9 @@ import { HeaderTitle } from '../../store/actions/titleAction'
 import { SidebarLayout, MenuLayout } from '../../layout'
 import UserImage from '../../images/user.jpg'
 import { Menu } from '../../config/sidebar/Menu'
+import { company } from './../../config/sidebar/Company'
 
 const Sidebar = (props) => {
-    /* Functions Setting */
     const stateOnLogout = () => {
         const check = window.confirm('Are you sure want to logout?')
         if (check) {
@@ -16,10 +16,10 @@ const Sidebar = (props) => {
     }
     return (
         <SidebarLayout 
-            companyName={props.companyName || null}
+            companyName={company.name}
             displayName={props.displayName}
             userLogo={props.photoURL ? props.photoURL : UserImage}
-            companyLogo={props.Logo || null}
+            companyLogo={company.logo}
             logout={stateOnLogout}
             homeTitle={() => props.HeaderTitle("Home")}
         >

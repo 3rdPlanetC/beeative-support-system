@@ -1,6 +1,7 @@
 import React from 'react'
 import { HeaderLayout } from '../../layout'
 import { connect } from 'react-redux'
+import { company } from './../../config/sidebar/Company'
 
 const Header = (props) => {
     return (
@@ -10,16 +11,16 @@ const Header = (props) => {
                     <h2 style={{padding: "0 2rem"}}>{props.title}</h2>
                 </div>
                 <div style={{width: "50%",margin: "auto"}}>
-                    <h2 style={{float: "right", padding: "0 2rem"}}>Beeative Support System Version 1.2.3</h2>
+                    <h2 style={{float: "right", padding: "0 2rem"}}>{company.app_version}</h2>
                 </div>
             </div>
         </HeaderLayout>
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({title}) => {
     return {
-        ...state
+        title
     }
 }
 
