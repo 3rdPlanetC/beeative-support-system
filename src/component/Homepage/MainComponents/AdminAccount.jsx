@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 import DataTable from './AdminAccount/DataTable'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { HeaderTitle } from '../../../store/actions/titleAction'
-import { createProject } from '../../../store/actions/ProjectAction'
+import { createProject, deleteProject, updateProject } from '../../../store/actions/ProjectAction'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
@@ -30,9 +30,9 @@ const AdminAccount = (props) => {
         setTimeout(() => {
           resolve()
           const adding = {
-            id: props.customer_project.length + 1,
-            date_created: new Date().toLocaleDateString(),
-            date_modified: new Date().toLocaleDateString(),
+            note_id: props.customer_project.length + 1,
+            date_created: new Date().toDateString(),
+            date_modified: new Date().toDateString(),
             avatar_created: props.userData.photoURL,
             avatar_modified: props.userData.photoURL,
           }
@@ -47,14 +47,14 @@ const AdminAccount = (props) => {
   const updateData = async (newData, oldData) => {
     return new Promise(resolve => {
       resolve()
-      console.log("createCustomerProject")
+      props.updateProject(newData)
     })
   }
   /* Delete Customer Data */
   const deleteData = async oldData => {
     return new Promise(resolve => {
       resolve()
-      console.log("deleteData")
+      props.deleteProject(oldData)
     })
   }
   /* Create Customer Project */
@@ -98,8 +98,10 @@ const AdminAccount = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    HeaderTitle: (title) => dispatch(HeaderTitle(title)),
-    createProject: (project) => dispatch(createProject(project))
+    HeaderTitle: title => dispatch(HeaderTitle(title)),
+    createProject: project => dispatch(createProject(project)),
+    deleteProject: project => dispatch(deleteProject(project)),
+    updateProject: project => dispatch(updateProject(project))
   }
 }
 

@@ -4,27 +4,33 @@ export const createProject = (project) => {
         firestore.collection('customer_project').add({
             ...project
         }).then(() => {
-            console.log("add finished")
+            // notification
         }).catch(err => {
-            console.log(err)
+            // notification
         })
     }
 }
 
 export const deleteProject = (project) => {
-    return () => {
-
+    return (dispatch, getState, { getFirestore}) => {
+        const firestore = getFirestore()
+        firestore.collection('customer_project').doc(project.id).delete().then(() => {
+            // notification
+        }).catch(err => {
+            // notification
+        })
     }
 }
 
-// export const updateProject = (project) => {
-//     return () => {
-
-//     }
-// }
-
-// export const readProject = () => {
-//     return () => {
-
-//     }
-// }
+export const updateProject = (project) => {
+    return (dispatch, getState, { getFirestore}) => {
+        const firestore = getFirestore()
+        firestore.collection('customer_project').doc(project.id).update({
+            ...project
+        }).then(() => {
+            // notification
+        }).catch(err => {
+            // notification
+        })
+    }
+}
