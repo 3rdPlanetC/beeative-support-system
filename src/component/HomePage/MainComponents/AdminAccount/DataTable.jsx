@@ -68,7 +68,7 @@ const DataTable = (props) => {
                 {
                     title: 'avatar_created',
                     field: 'avatar_created',
-                    render: rowData => <Avatar rowData={rowData} photoURL={props.userData.photoURL} type="avatar_created" />,
+                    render: rowData => <Avatar rowData={rowData} photoURL={props.photoURL} type="avatar_created" />,
                     editable: 'never',
                     filtering: false,
                     export: false
@@ -76,7 +76,7 @@ const DataTable = (props) => {
                 {
                     title: 'avatar_modified',
                     field: 'avatar_modified',
-                    render: rowData => <Avatar rowData={rowData} photoURL={props.userData.photoURL} type="avatar_modified" />,
+                    render: rowData => <Avatar rowData={rowData} photoURL={props.photoURL} type="avatar_modified" />,
                     editable: 'never',
                     filtering: false,
                     export: false

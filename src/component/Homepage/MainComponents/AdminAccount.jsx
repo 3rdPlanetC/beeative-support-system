@@ -9,6 +9,7 @@ import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 
 const AdminAccount = (props) => {
+  console.log(props)
   /* States Setting */
   const [selectRow, setSelectRow] = useState(null)
   useEffect(() => {
@@ -87,7 +88,7 @@ const AdminAccount = (props) => {
           updateData={updateData}
           deleteData={deleteData}
           createCustomerProject={createCustomerProject}
-          userData={props.userData}
+          photoURL={props.photoURL}
           admin_account={props.admin_account}
           customer_project={props.customer_project}
         />
@@ -105,10 +106,11 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const mapStateToProps = ({firestore}) => {
+const mapStateToProps = ({firestore, firebase}) => {
   return {
     admin_account: firestore.data.admin_account,
     customer_project: firestore.ordered.customer_project,
+    photoURL: firebase.photoURL
   }
 }
 
