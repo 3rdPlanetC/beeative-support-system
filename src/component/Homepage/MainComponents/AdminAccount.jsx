@@ -2,10 +2,11 @@ import React, { useState, useEffect, Fragment } from 'react'
 import DataTable from './AdminAccount/DataTable'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { HeaderTitle } from '../../../store/actions/titleAction'
-import { createProject } from '../../../store/actions/projectAction'
+import { createProject } from '../../../store/actions/ProjectAction'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
+
 
 const AdminAccount = (props) => {
   console.log(props.customer_project)

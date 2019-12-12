@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Logo from '../../images/beeative-logo-word.png'
 import ButtonLogin from './LoginComponent/ButtonLogin'
 import LogoLogin from './LoginComponent/LogoLogin'
-import '../../css/LoginPage/login.css'
+import '../../css/Loginpage/login.css'
 
 const LoginPage = (props) => {
     /* useEffect Setting */

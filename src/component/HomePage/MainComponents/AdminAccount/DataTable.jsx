@@ -3,7 +3,7 @@ import MaterialTable from 'material-table'
 import { firestoreConnect } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import Avatar from './AvatarEachRow'
+import Avatar from './Avatar'
 
 const DataTable = (props) => {
     const tableRef = useRef()
@@ -26,8 +26,8 @@ const DataTable = (props) => {
             onRowClick={(ev, selectRow) => props.setSelectRow(selectRow)}
             columns={[
                 {
-                    title: 'id',
-                    field: 'id',
+                    title: 'note_id',
+                    field: 'note_id',
                     type: 'numeric',
                     defaultSort: 'asc',
                     editable: 'never',

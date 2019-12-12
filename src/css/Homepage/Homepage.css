@@ -39,9 +39,7 @@
 }
 #homepage {
   grid-template-columns: 1fr 11fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  background-color: #ffca09;
-  grid-gap: 1.75px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   display: grid;
   position: absolute;
   width: 100%;
@@ -49,24 +47,27 @@
 }
 #homepage #header {
   grid-column: 2 / 3;
-  grid-row: 1 / 3;
+  grid-row: 1 / 2;
   background: #000;
   color: #fff;
   margin: auto;
   width: 100%;
   height: 100%;
   min-height: calc(750px * 2 / 12);
+  border-bottom: 1.75px solid rgba(255, 202, 9, 0.9);
 }
 #homepage #header #header-title {
   display: flex;
 }
 #homepage #main {
   grid-column: 2 / 5;
-  grid-row: 3 / 13;
+  grid-row: 2 / 13;
   padding: 2rem;
   background: #000;
   overflow-y: auto;
   width: auto;
+  height: 100%;
+  min-height: calc(750px * 10 / 12);
 }
 #homepage #main div:not(.MuiPaper-root) {
   height: 100%;
@@ -82,10 +83,10 @@
   display: grid;
   min-width: 250px;
   min-height: 750px;
+  border-right: 1.75px solid rgba(255, 202, 9, 0.9);
 }
 #homepage #sidebar #sidebar-heading {
   border-bottom: 1.75px solid rgba(255, 202, 9, 0.9);
-  grid-row: 1 / 3;
   display: flex;
   min-height: calc(750px * 2 / 12);
 }
@@ -106,9 +107,9 @@
   text-align: center;
 }
 #homepage #sidebar #sidebar-user {
-  grid-row: 3 / 5;
   border-bottom: 1.75px solid rgba(255, 202, 9, 0.9);
   display: flex;
+  min-height: calc(750px * 2 / 12);
 }
 #homepage #sidebar #sidebar-user #sidebar-user-logo {
   width: calc(100% * 1/3);
@@ -155,9 +156,7 @@
   background-color: rgba(255, 202, 9, 0.7);
 }
 #homepage #sidebar #sidebar-menu {
-  grid-row-start: 5;
   margin-top: 1rem;
-  grid-row-end: 13;
 }
 #homepage #sidebar #sidebar-menu .sidebar-menu-item {
   padding: 1rem;
