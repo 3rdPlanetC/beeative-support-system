@@ -1,17 +1,24 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import DataTable from './AdminAccount/DataTable'
+import DialogModal from './AdminAccount/DialogModal'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { HeaderTitle } from '../../../store/actions/titleAction'
-import { createProject, deleteProject, updateProject } from '../../../store/actions/ProjectAction'
+import { createProject, deleteProject, updateProject, createCustomerId } from '../../../store/actions/ProjectAction'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 
 
 const AdminAccount = (props) => {
-  console.log(props)
-  /* States Setting */
   const [selectRow, setSelectRow] = useState(null)
+  const [openModal, setOpenModal] = useState(false)
+  const [modalText, setModalText] = useState("")
+  const handleOpenModal = () => setOpenModal(true)
+  const handleCloseModal = () => setOpenModal(false)
+  const handleModalText = (ev) => {
+    setModalText(ev.target.value)
+  }
+
   useEffect(() => {
     const abortController = new AbortController()
     if (props.match.url === "/admin_account") {
@@ -21,10 +28,7 @@ const AdminAccount = (props) => {
       abortController.abort()
     }
   }, [props.match.url])
-  /* Refresh Customer Data */
-  const readData = async () => {
-    console.log("readData")
-  }
+ 
   /* Create Customer Data */
   const createData = async newData => {
       return new Promise(resolve => {
@@ -59,10 +63,11 @@ const AdminAccount = (props) => {
     })
   }
   /* Create Customer Project */
-  const createCustomerProject = async () => {
+  const createCustomerData = async () => {
     return new Promise(resolve => {
       resolve()
-      console.log("createCustomerProject")
+      handleCloseModal()
+      props.createCustomerId(modalText)
     })
   }
 
@@ -79,19 +84,27 @@ const AdminAccount = (props) => {
   return (
     <Fragment>
       {isEmpty(props.admin_account) && isEmpty(props.customer_project) ? 'Data is empty': 
-        <DataTable 
-          isLoaded={!isLoaded}
-          selectRow={selectRow}
-          setSelectRow={setSelectRow}
-          readData={readData}
-          createData={createData}
-          updateData={updateData}
-          deleteData={deleteData}
-          createCustomerProject={createCustomerProject}
-          photoURL={props.photoURL}
-          admin_account={props.admin_account}
-          customer_project={props.customer_project}
-        />
+        <Fragment>
+          <DataTable 
+            isLoaded={!isLoaded}
+            selectRow={selectRow}
+            setSelectRow={setSelectRow}
+            createData={createData}
+            updateData={updateData}
+            deleteData={deleteData}
+            handleOpenModal={handleOpenModal}
+            photoURL={props.photoURL}
+            admin_account={props.admin_account}
+            customer_project={props.customer_project}
+          />
+          <DialogModal 
+            openModal={openModal}
+            handleCloseModal={handleCloseModal}
+            handleModalText={handleModalText}
+            modalText={modalText}
+            createCustomerData={createCustomerData}
+          />
+        </Fragment>
       }
     </Fragment>
   )
@@ -102,7 +115,8 @@ const mapDispatchToProps = (dispatch) => {
     HeaderTitle: title => dispatch(HeaderTitle(title)),
     createProject: project => dispatch(createProject(project)),
     deleteProject: project => dispatch(deleteProject(project)),
-    updateProject: project => dispatch(updateProject(project))
+    updateProject: project => dispatch(updateProject(project)),
+    createCustomerId: projectName => dispatch(createCustomerId(projectName))
   }
 }
 

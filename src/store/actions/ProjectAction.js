@@ -34,3 +34,10 @@ export const updateProject = (project) => {
         })
     }
 }
+
+export const createCustomerId = (projectName) => {
+    return ({ getFirestore}) => {
+        const firestore = getFirestore()
+        console.log(projectName)
+    }
+}

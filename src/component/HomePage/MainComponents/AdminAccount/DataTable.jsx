@@ -3,7 +3,6 @@ import MaterialTable from 'material-table'
 import Avatar from './Avatar'
 
 const DataTable = (props) => {
-    console.log(props)
     return (
         <MaterialTable
             title='Admin Accounts'
@@ -111,7 +110,7 @@ const DataTable = (props) => {
                     icon: 'post_add',
                     tooltip: 'Add New Customer Project',
                     isFreeAction: true,
-                    onClick: () => props.createCustomerProject()
+                    onClick: () => props.handleOpenModal()
                 },
                 // {
                 //     icon: 'refresh',
