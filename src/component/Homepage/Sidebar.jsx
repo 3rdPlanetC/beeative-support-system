@@ -8,10 +8,10 @@ import { Menu } from '../../config/sidebar/Menu'
 import { company } from './../../config/sidebar/Company'
 
 const Sidebar = (props) => {
-    const stateOnLogout = () => {
+    const stateOnLogout = (uid) => {
         const check = window.confirm('Are you sure want to logout?')
         if (check) {
-            props.LogoutUser()
+            props.LogoutUser(uid)
         }
     }
     return (
@@ -20,7 +20,7 @@ const Sidebar = (props) => {
             displayName={props.displayName}
             userLogo={props.photoURL ? props.photoURL : UserImage}
             companyLogo={company.logo}
-            logout={stateOnLogout}
+            logout={() => {stateOnLogout(props.uid)}}
             homeTitle={() => props.HeaderTitle("Home")}
         >
             {Menu.map((item, index) => 
@@ -32,7 +32,7 @@ const Sidebar = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      LogoutUser: () => dispatch(LogoutUser()),
+      LogoutUser: (uid) => dispatch(LogoutUser(uid)),
       HeaderTitle: (title) => dispatch(HeaderTitle(title))
     }
 }

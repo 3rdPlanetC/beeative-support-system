@@ -5,6 +5,6 @@ import 'firebase/database'
 
 import config from './config'
 firebase.initializeApp(config)
-firebase.firestore().settings({})
+firebase.firestore()
 
 export default firebase
