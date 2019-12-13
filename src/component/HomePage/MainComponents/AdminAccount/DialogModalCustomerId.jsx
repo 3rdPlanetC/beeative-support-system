@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Button, TextField ,Dialog ,DialogActions ,DialogContent ,DialogContentText ,DialogTitle} from '@material-ui/core'
 import { withStyles, makeStyles } from '@material-ui/core/styles'
 import { yellow } from '@material-ui/core/colors'
@@ -18,8 +18,12 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const DialogModal = (props) => {
+const DialogModalCustomerId = (props) => {
     const classes = useStyles()
+    const [modalText, setModalText] = useState("")
+    const handleModalText = (ev) => {
+        setModalText(ev.target.value)
+    }
     return (
         <Dialog open={props.openModal} onClose={props.handleCloseModal} fullWidth={true} maxWidth={'sm'} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title"> Add Customer ID</DialogTitle>
@@ -29,12 +33,12 @@ const DialogModal = (props) => {
                 </DialogContentText>
                 <TextField
                     autoFocus
-                    onChange={props.handleModalText}
+                    onChange={handleModalText}
                     margin="dense"
                     id="name"
                     label="Ex. Phutawan"
                     type="text"
-                    value={props.modalText}
+                    value={modalText}
                     fullWidth
                 />
             </DialogContent>
@@ -42,7 +46,7 @@ const DialogModal = (props) => {
                 <Button onClick={props.handleCloseModal} color="default">
                     Cancel
                 </Button>
-                <ColorButton onClick={props.createCustomerData} variant="contained" color="primary" className={classes.margin}>
+                <ColorButton onClick={() => props.createCustomerData(modalText, Object.keys(props.customerId).length)} variant="contained" color="primary" className={classes.margin}>
                     Confirm
                 </ColorButton>
             </DialogActions>
@@ -50,4 +54,4 @@ const DialogModal = (props) => {
     )
 }
 
-export default DialogModal
+export default DialogModalCustomerId

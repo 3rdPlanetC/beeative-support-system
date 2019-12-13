@@ -14,24 +14,25 @@ export const GoogleLogin = () => {
             if (res.additionalUserInfo.profile.hd === "beeative.com") {
                 const dateNow = new Date().getTime()
                 const value = cryptojs.AES.encrypt(`${dateNow}`, "beeative_never_die!").toString()
-                cookies.set(
-                    'FAUTH',
-                    value,
-                    { 
-                        path: '/',
-                        maxAge: 24*60*60
-                    }
-                )
                 userRef.doc(res.user.uid).set({
                     online: true,
-                }, { merge: true})
-                window.location.reload()
+                }, { merge: true}).then(() => {
+                    cookies.set(
+                        'FAUTH',
+                        value,
+                        { 
+                            path: '/',
+                            maxAge: 24*60*60
+                        }
+                    )
+                    window.location.reload()
+                })
             } else {
                 firebase.logout().then(() => {
                     cookies.remove(`FAUTH`)
-                    window.location.reload()
+                    alert("Error Message : Please Signin by youremail@beeative.com")
                 })
-                 alert("Error Message : Please Signin by youremail@beeative.com")
+                window.location.reload()
             }
         }).catch(err => {
             console.log(err)

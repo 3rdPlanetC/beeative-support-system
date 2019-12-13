@@ -35,9 +35,30 @@ export const updateProject = (project) => {
     }
 }
 
-export const createCustomerId = (projectName) => {
-    return ({ getFirestore}) => {
+export const createCustomerId = (projectName, index, callback) => {
+    return (dispatch, getState, { getFirestore}) => {
         const firestore = getFirestore()
-        console.log(projectName)
+        firestore.collection('admin_account').doc('customerId').update({
+            [index]: projectName
+        }).then(() => {
+            callback()
+            // notification
+        }).catch(err => {
+            // notification
+        })
+    }
+}
+
+export const createSystemType = (SystemName, index, callback) => {
+    return (dispatch, getState, { getFirestore}) => {
+        const firestore = getFirestore()
+        firestore.collection('admin_account').doc('systemType').update({
+            [index]: SystemName
+        }).then(() => {
+            callback()
+            // notification
+        }).catch(err => {
+            // notification
+        })
     }
 }

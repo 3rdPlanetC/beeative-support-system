@@ -2,6 +2,9 @@
   font-family: kanit;
   src: url('../fonts/Kanit-Regular.ttf');
 }
+td.MuiTableCell-root {
+  padding: 8px !important;
+}
 * {
   margin: 0;
   padding: 0;

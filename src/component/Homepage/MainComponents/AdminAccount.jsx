@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import DataTable from './AdminAccount/DataTable'
-import DialogModal from './AdminAccount/DialogModal'
+import DialogModalCustomerId from './AdminAccount/DialogModalCustomerId'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { HeaderTitle } from '../../../store/actions/titleAction'
 import { createProject, deleteProject, updateProject, createCustomerId } from '../../../store/actions/ProjectAction'
@@ -12,12 +12,8 @@ import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 const AdminAccount = (props) => {
   const [selectRow, setSelectRow] = useState(null)
   const [openModal, setOpenModal] = useState(false)
-  const [modalText, setModalText] = useState("")
   const handleOpenModal = () => setOpenModal(true)
   const handleCloseModal = () => setOpenModal(false)
-  const handleModalText = (ev) => {
-    setModalText(ev.target.value)
-  }
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -29,7 +25,6 @@ const AdminAccount = (props) => {
     }
   }, [props.match.url])
  
-  /* Create Customer Data */
   const createData = async newData => {
       return new Promise(resolve => {
         setTimeout(() => {
@@ -48,26 +43,25 @@ const AdminAccount = (props) => {
         }, 500)
       })
   }
-  /* Update Customer Data */
-  const updateData = async (newData, oldData) => {
+
+  const updateData = (newData, oldData) => {
     return new Promise(resolve => {
       resolve()
       props.updateProject(newData)
     })
   }
-  /* Delete Customer Data */
-  const deleteData = async oldData => {
+
+  const deleteData = oldData => {
     return new Promise(resolve => {
       resolve()
       props.deleteProject(oldData)
     })
   }
-  /* Create Customer Project */
-  const createCustomerData = async () => {
+
+  const createCustomerData = (newCustomerId, indexCustomerId) => {
     return new Promise(resolve => {
       resolve()
-      handleCloseModal()
-      props.createCustomerId(modalText)
+      props.createCustomerId(newCustomerId, indexCustomerId, handleCloseModal)
     })
   }
 
@@ -97,12 +91,11 @@ const AdminAccount = (props) => {
             admin_account={props.admin_account}
             customer_project={props.customer_project}
           />
-          <DialogModal 
+          <DialogModalCustomerId 
             openModal={openModal}
             handleCloseModal={handleCloseModal}
-            handleModalText={handleModalText}
-            modalText={modalText}
             createCustomerData={createCustomerData}
+            customerId={props.admin_account.customerId}
           />
         </Fragment>
       }
@@ -116,7 +109,7 @@ const mapDispatchToProps = (dispatch) => {
     createProject: project => dispatch(createProject(project)),
     deleteProject: project => dispatch(deleteProject(project)),
     updateProject: project => dispatch(updateProject(project)),
-    createCustomerId: projectName => dispatch(createCustomerId(projectName))
+    createCustomerId: (projectName, index, callback) => dispatch(createCustomerId(projectName, index, callback))
   }
 }
 

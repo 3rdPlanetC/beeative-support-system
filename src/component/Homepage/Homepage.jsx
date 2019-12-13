@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
+import { LogoutUser } from '../../store/actions/authAction'
 import '../../css/Homepage/Homepage.css'
 
 import Header from './Header'
@@ -17,6 +18,12 @@ const Homepage = (props) => {
     )
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    LogoutUser: (uid) => dispatch(LogoutUser(uid)),
+  }
+}
+
 const mapStateToProps = ({firebase}) => {
   return {
     firebase,
@@ -24,5 +31,5 @@ const mapStateToProps = ({firebase}) => {
 }
 
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
 )(Homepage)

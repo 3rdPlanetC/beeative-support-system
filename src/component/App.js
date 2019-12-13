@@ -1,4 +1,4 @@
-import React, {lazy, Suspense, useEffect} from 'react'
+import React, {lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { LoadingLayout } from '../layout'
@@ -16,7 +16,9 @@ const App = (props) => {
   if (cookies.get('FAUTH') != undefined) {
     cookieChecker = cryptojs.AES.decrypt(cookies.get('FAUTH'), "beeative_never_die!").toString(cryptojs.enc.Utf8)
   }
-  /* Render */
+  // useEffect(() => {
+  //   localStorage.setItem('myValueInLocalStorage', "test")
+  // }, [])
   return (
     <BrowserRouter
       forceRefresh={true}
@@ -26,7 +28,7 @@ const App = (props) => {
             <Suspense fallback={<LoadingLayout />}>
               {cookieChecker%1 === 0 ? (
                 isAuth.auth.isLoaded == true ? (
-                  <HomePage {...props}/>
+                    <HomePage {...props}/>
                 ) : (
                   <LoadingLayout />
                 )
