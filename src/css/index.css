@@ -22,8 +22,11 @@ input {
   border-style: none;
 }
 /* Class Active */
-.sidebar-menu-item-active div {
-  background-color: #3c3c3c;
+.sidebar-menu-item-active button {
+  background-color: #3c3c3c !important;
+}
+.sidebar-menu-item-active button:hover {
+  color: white !important;
 }
 tr.MuiTableRow-root th {
   background-color: rgba(255, 202, 9, 0.9);

@@ -1,24 +1,34 @@
-import React, {lazy, Suspense, useEffect } from 'react'
+import React, {lazy, Suspense, useEffect, useState } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { LoadingLayout } from '../layout'
 import { compose } from 'redux'
-import Cookies from 'universal-cookie'
-import cryptojs from 'crypto-js'
+// import Cookies from 'universal-cookie'
+// import cryptojs from 'crypto-js'
+import firebase from 'firebase'
 
-const cookies = new Cookies();
+// const cookies = new Cookies();
 const LoginPage = lazy(() => import('./LoginPage/LoginPage'))
 const HomePage = lazy(() => import('./HomePage/Homepage'))
-let cookieChecker
+// let cookieChecker
 
 const App = (props) => {
+  const [authUser,setAuthUser] = useState(null)
+  const [authWasListened,setAuthWasListened] = useState(false)
+  useEffect(() => {
+    const authListener = firebase.auth().onAuthStateChanged((authUser) => {
+        if(authUser) {
+          setAuthUser(authUser)
+          setAuthWasListened(true)
+        } else {
+          setAuthUser(null)
+          setAuthWasListened(true)
+        }
+      }
+    )
+    return () => authListener()
+  }, [])
   const isAuth = props.firebase
-  if (cookies.get('FAUTH') != undefined) {
-    cookieChecker = cryptojs.AES.decrypt(cookies.get('FAUTH'), "beeative_never_die!").toString(cryptojs.enc.Utf8)
-  }
-  // useEffect(() => {
-  //   localStorage.setItem('myValueInLocalStorage', "test")
-  // }, [])
   return (
     <BrowserRouter
       forceRefresh={true}
@@ -26,14 +36,18 @@ const App = (props) => {
       <div id="app">
           <Route path="/" render={props => (
             <Suspense fallback={<LoadingLayout />}>
-              {cookieChecker%1 === 0 ? (
-                isAuth.auth.isLoaded == true ? (
-                    <HomePage {...props}/>
-                ) : (
-                  <LoadingLayout />
-                )
+              {authWasListened ? (
+                  authUser !== null ? (
+                    isAuth.auth.isLoaded === true ? (
+                      <HomePage {...props}/>
+                    ) : (
+                      <LoadingLayout />
+                    )
+                  ) : (
+                    <LoginPage {...props}/>
+                  )
               ) : (
-                <LoginPage {...props}/>
+                <LoadingLayout />
               )}
             </Suspense>
           )}/>

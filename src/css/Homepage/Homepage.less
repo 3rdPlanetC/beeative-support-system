@@ -33,6 +33,20 @@
         div:not(.MuiPaper-root) {
             height: 100%;
         }
+        // online user
+        div#online-user {
+            div.MuiGrid-root {
+                ul {
+                    li {
+                        div.MuiListItemText-root {
+                            p {
+                                color: rgba(255, 255, 255, 0.54);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     #sidebar {
         grid-column: ~"1 / 2";
@@ -122,16 +136,19 @@
                 padding: 1rem;
                 border-radius: 10px 10px 10px 10px;
                 display: flex;
+                width: 100%;
+                color: white;
+                background: black;
                 &:hover {
                     background-color: #ffca09;
                     color: black;
-                    div {
-                        background-color: #ffca09;
-                        color: black;
-                    }
                 }
-                .sidebar-menu-item-child {
-                    padding: 0 0.5rem;
+                span {
+                    text-align: left;
+                    justify-content: start;
+                    .sidebar-menu-item-child {
+                        padding: 0 0.5rem;
+                    }
                 }
             }
         }

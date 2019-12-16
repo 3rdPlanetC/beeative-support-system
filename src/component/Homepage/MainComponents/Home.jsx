@@ -1,14 +1,19 @@
-import React from 'react'
+import React, {lazy, Suspense} from 'react'
 import { compose } from 'redux'
-import { firestoreConnect ,isLoaded, isEmpty } from 'react-redux-firebase'
+import { firestoreConnect, firebaseConnect ,isLoaded, isEmpty } from 'react-redux-firebase'
 import { connect } from 'react-redux'
-import { makeStyles, withStyles, withTheme } from '@material-ui/core/styles'
-import { Grid, List, ListItem, ListItemAvatar, Avatar, ListItemText, Badge } from '@material-ui/core'
+import { Grid, List } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import { LoadingLayout } from '../../../layout'
+import '../../../css/Homepage/Home/Home.css'
+
+const UserOnline = lazy(() => import('./Home/UserOnline'))
 
 const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
       maxWidth: 752,
+      color: "white"
     },
     demo: {
       backgroundColor: "black",
@@ -16,71 +21,26 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
       margin: theme.spacing(4, 0, 2),
+      color: "white"
     },
 }))
 
-const StyledBadge2 = withStyles(theme => ({
-    badge: {
-      backgroundColor: '#44b700',
-      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-      '&::after': {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        borderRadius: '50%',
-        animation: '$ripple 1.2s infinite ease-in-out',
-        border: '1px solid #44b700',
-        content: '""',
-      },
-    },
-    '@keyframes ripple': {
-      '0%': {
-        transform: 'scale(.8)',
-        opacity: 1,
-      },
-      '100%': {
-        transform: 'scale(2.4)',
-        opacity: 0,
-      },
-    },
-  }))(Badge);
-
 const Home = (props) => {
     const classes = useStyles()
-    const { users } = props
+    const { users = [], presence = {} } = props
     return (
-        <div>
+        <div id="online-user">
             <h2 style={{color: "white"}}>Online User</h2>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={12}>
                 <div className={classes.demo}>
                     <List dense={false}>
-                    {!isLoaded(users) ? 'Loading...' : !isEmpty ? (
-                        'No Data'
-                    ) : (
-                        users.map((data,index) => {
-                            return (
-                                <ListItem key={index}>
-                                    <ListItemAvatar>
-                                    <StyledBadge2
-                                        overlap="circle"
-                                        anchorOrigin={{
-                                            vertical: 'bottom',
-                                            horizontal: 'right',
-                                        }}
-                                        variant={data.online ? 'dot' : 'standard'}
-                                    >
-                                    <Avatar alt={`${data.displayName} Images`} src={data.avatarUrl} />
-                                    </StyledBadge2>
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        primary={data.displayName}
-                                    />
-                                </ListItem>
-                            )
-                        })
-                    )}
+                        {!isLoaded(users, presence) ? 'Loading...' : !isEmpty ? (
+                            'No Data'
+                        ) : (
+                            <Suspense fallback={<LoadingLayout />}>
+                                <UserOnline users={users} presence={presence}/>
+                            </Suspense>
+                        )}
                     </List>
                 </div>
             </Grid>
@@ -88,9 +48,10 @@ const Home = (props) => {
     )
 }
 
-const mapStateToProps = ({firestore}) => {
+const mapStateToProps = ({firestore, firebase}) => {
     return {
-        users: firestore.ordered.users
+        users: firestore.ordered.users,
+        presence: firebase.data.presence
     }
 }
 
@@ -98,6 +59,9 @@ const enhance = compose(
     connect(mapStateToProps, null),
     firestoreConnect([
         "users"
+    ]),
+    firebaseConnect([
+        "presence"
     ])
 )
 
