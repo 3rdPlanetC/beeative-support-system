@@ -108,16 +108,16 @@ const DataTable = (props) => {
             actions={[
                 {
                     icon: 'post_add',
-                    tooltip: 'Add New Customer Project',
+                    tooltip: 'Add new customer id',
                     isFreeAction: true,
-                    onClick: () => props.handleOpenModal()
+                    onClick: () => props.handleOpenModalCustomerId()
                 },
-                // {
-                //     icon: 'refresh',
-                //     tooltip: 'Refresh Data',
-                //     isFreeAction: true,
-                //     onClick: () => tableRef.current && tableRef.current.onQueryChange()
-                // },
+                {
+                    icon: 'note_add',
+                    tooltip: 'Add new system type',
+                    isFreeAction: true,
+                    onClick: () => props.handleOpenModalSystemType()
+                },
             ]}
         />
     )

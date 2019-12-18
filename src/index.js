@@ -22,7 +22,6 @@ const store = createStore(rootReducer,
             userProfile: 'users',
             presence: 'presence',
             useFirestoreForProfile: true,
-            attachAuthIsReady: true,
         })
     )
 )

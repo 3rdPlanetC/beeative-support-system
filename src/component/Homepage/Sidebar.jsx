@@ -8,10 +8,10 @@ import { Menu } from '../../config/sidebar/Menu'
 import { company } from './../../config/sidebar/Company'
 
 const Sidebar = (props) => {
-    const stateOnLogout = (uid) => {
+    const stateOnLogout = () => {
         const check = window.confirm('Are you sure want to logout?')
         if (check) {
-            props.LogoutUser(uid)
+            props.LogoutUser()
         }
     }
     return (
@@ -20,7 +20,7 @@ const Sidebar = (props) => {
             displayName={props.displayName}
             userLogo={props.photoURL ? props.photoURL : UserImage}
             companyLogo={company.logo}
-            logout={() => {stateOnLogout(props.uid)}}
+            logout={() => {stateOnLogout()}}
             homeTitle={() => props.HeaderTitle("Home")}
         >
             {Menu.map((item, index) => 
@@ -30,11 +30,18 @@ const Sidebar = (props) => {
     )
 }
 
+const mapStateToProps = ({firebase}) => {
+    return {
+        photoURL: firebase.auth.photoURL,
+        displayName: firebase.auth.displayName
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
-      LogoutUser: (uid) => dispatch(LogoutUser(uid)),
+      LogoutUser: () => dispatch(LogoutUser()),
       HeaderTitle: (title) => dispatch(HeaderTitle(title))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Sidebar)
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

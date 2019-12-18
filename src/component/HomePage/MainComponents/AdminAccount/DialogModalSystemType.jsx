@@ -18,35 +18,35 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const DialogModalCustomerId = (props) => {
+const DialogModalSystemType = (props) => {
     const classes = useStyles()
     const [modalText, setModalText] = useState("")
     const handleModalText = (ev) => {
         setModalText(ev.target.value)
     }
     return (
-        <Dialog open={props.openModalCustomerId} onClose={props.handleCloseModalCustomerId} fullWidth={true} maxWidth={'sm'} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title"> Add Customer ID</DialogTitle>
+        <Dialog open={props.openModalSystemType} onClose={props.handleCloseModalSystemType} fullWidth={true} maxWidth={'sm'} aria-labelledby="form-dialog-title">
+            <DialogTitle id="form-dialog-title"> Add System Type</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    Typing Customer ID
+                    Typing SystemType
                 </DialogContentText>
                 <TextField
                     autoFocus
                     onChange={handleModalText}
                     margin="dense"
                     id="name"
-                    label="Ex. Phutawan"
+                    label="Ex. Database"
                     type="text"
                     value={modalText}
                     fullWidth
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={props.handleCloseModalCustomerId} color="default">
+                <Button onClick={props.handleCloseModalSystemType} color="default">
                     Cancel
                 </Button>
-                <ColorButton onClick={() => props.createCustomerIdData(modalText, Object.keys(props.customerId).length)} variant="contained" color="primary" className={classes.margin}>
+                <ColorButton onClick={() => props.createSystemTypeData(modalText, Object.keys(props.systemType).length)} variant="contained" color="primary" className={classes.margin}>
                     Confirm
                 </ColorButton>
             </DialogActions>
@@ -54,4 +54,4 @@ const DialogModalCustomerId = (props) => {
     )
 }
 
-export default DialogModalCustomerId
+export default DialogModalSystemType

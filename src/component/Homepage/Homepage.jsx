@@ -1,35 +1,24 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { LogoutUser } from '../../store/actions/authAction'
+import roleChecker from '../../hoc/user/roleChecker'
 import '../../css/Homepage/Homepage.css'
 
 import Header from './Header'
 import Sidebar from './Sidebar'
 import Main from './Main'
   
-const Homepage = (props) => {
+const Homepage = () => {
     return (
         <section id="home-page">
             <Header />
-            <Sidebar {...props.firebase.auth} />
+            <Sidebar />
             <Main />
         </section>
     )
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    LogoutUser: (uid) => dispatch(LogoutUser(uid)),
-  }
-}
+const enhance = compose(
+    roleChecker
+)
 
-const mapStateToProps = ({firebase}) => {
-  return {
-    firebase,
-  }
-}
-
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-)(Homepage)
+export default enhance(Homepage)

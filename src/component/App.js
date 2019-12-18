@@ -3,14 +3,10 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { LoadingLayout } from '../layout'
 import { compose } from 'redux'
-// import Cookies from 'universal-cookie'
-// import cryptojs from 'crypto-js'
 import firebase from 'firebase'
 
-// const cookies = new Cookies();
 const LoginPage = lazy(() => import('./LoginPage/LoginPage'))
 const HomePage = lazy(() => import('./HomePage/Homepage'))
-// let cookieChecker
 
 const App = (props) => {
   const [authUser,setAuthUser] = useState(null)
